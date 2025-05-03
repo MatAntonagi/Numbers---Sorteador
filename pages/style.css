@@ -37,4 +37,11 @@
 body{
     background-image: url(../assets/img/BG-image.png);
     background-color: var(--background-primary);
+    padding: 2.75rem 2.21rem ;
+}
+
+@media (width >= 1200px){
+    body{
+        padding: 4.75rem 7.5rem 9.56rem ;
+    }
 }
