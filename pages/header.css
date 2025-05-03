@@ -1,0 +1,22 @@
+header{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    margin-top: 2.875rem;
+
+    & h3{
+        font: var(--overline);
+        background-image: var(--gradient-content) ;
+        background-clip: text;
+        --webkit-background-clip: text;
+        color: transparent;
+        text-transform: uppercase;
+    }
+
+    & h1{
+        font: var(--display-medium);
+        color: var(--content-primary);
+        text-transform: uppercase;
+    }
+}
