@@ -10,12 +10,50 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sora:wght@100..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="logo"><img src="./assets/img/logo (1).png" alt="Logo"></div>
+    <main>
+        <div class="logo"><img src="./assets/img/logo (1).png" alt="Logo"></div>
 
-    <header>
+        <header>
         <h3>Online - gratuito</h3>
         <h1>Sorteador <br>de números</h1>
-    </header>
+        </header>
+
+        <section>
+            <form>
+                <header>
+                    <h2>Quero sortear:</h2>
+                    <p>Defina o intervalo e a quantidade de números, clique em "Sortear" e veja os resultados na tela. É rápido e fácil!</p>
+                </header>
+
+                <div class="fields">
+                    <div class="number-1">
+                        <div class="input-wrapper">
+                            <input type="number" name="number" id="number">
+                        </div>
+                        <label for="number">números</label>
+                    </div>
+                    <div class="number-2">
+                        <div class="input-wrapper">
+                            <input type="number" name="of" id="of">
+                        </div>
+                        <label for="of">de</label>
+                    </div>
+                    <div class="number-3">
+                        <div class="input-wrapper">
+                            <input type="number" name="to" id="to">
+                        </div>
+                        <label for="to">até</label>
+                    </div>
+                </div>
+
+                <div class="repeat-btn">
+                    <input type="checkbox" name="repeat" id="repeat">
+                    <label for="repeat">Não repetir número</label>
+                </div>
+            </form>
+        </section>
+    </main>
+    
 
 
     <!--JAVASCRIPT-->
