@@ -132,3 +132,89 @@ form{
         align-content: center;
     }
 }
+
+.animated-button {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    margin-top: 2.5rem;
+    background-color: var(--background-tertiary);
+    font: var(--label-medium);
+    text-transform: uppercase;
+    color: var(--content-primary);
+    padding: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: .5rem;
+    z-index: 1;
+    overflow: hidden; /* importante para evitar vazamento da animação */
+
+    &:hover{
+        
+        & img{
+            animation: moveArrow 4s infinite ease-in-out;
+        }
+    }
+
+}
+
+.animated-button::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--background-tertiary);
+    border-radius: .5rem;
+    z-index: -1;
+}
+
+.animated-button:hover:before{
+    background: var(--gradient-border);
+    background-size: 800% 800%; /* maior para dar movimento */
+    animation: borderAnimated 6s ease infinite; /* animação contínua */
+}
+
+.animated-button::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: var(--background-tertiary);
+    border-radius: .5rem;
+    z-index: -1;
+}
+
+.animated-button:hover::after {
+    background-color: var(--background-secondary);
+}
+
+@keyframes borderAnimated {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes moveArrow {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(8px); /* vai um pouco pra direita */
+    }
+    100% {
+        transform: translateX(0); /* volta */
+    }
+}
