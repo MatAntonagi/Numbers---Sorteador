@@ -71,3 +71,64 @@ form{
         }
     }
 }
+
+.repeat-container{
+    margin-top: 1.25rem;
+    display: flex;
+    gap: .5rem;
+
+    & .input-wrapper{
+        width: 2.3rem;
+    }
+
+    & input{
+        all: unset;
+        position: relative;
+        appearance: none;
+    }
+
+    & .btn-repeat{
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+    }
+
+    & .btn-repeat::before,
+    & .btn-repeat::after{
+        content: "";
+    }
+
+    & .btn-repeat::before{
+        position: absolute;
+        display: inline-block;
+        width: 1.875rem;
+        height: 1.25rem;
+        background-color: var(--content-tertiary);
+        border-radius: 1rem;
+        padding: 1px;
+    }
+
+    & .btn-repeat::after{
+        position: relative;
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        margin: 3px 3px;
+        border-radius: 100%;
+        background-color: var(--content-primary);
+    }
+
+    input:checked + .btn-repeat::before{
+        background: var(--gradient-background);
+    }
+    
+    input:checked + .btn-repeat::after{
+        left: .6125rem;
+    }
+
+    .text-btn{
+        font: var(--paragraph-small);
+        color: var(--content-primary);
+        align-content: center;
+    }
+}
