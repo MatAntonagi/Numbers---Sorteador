@@ -1,4 +1,5 @@
 .question{
+    grid-area: C;
     margin-top: 5rem;
     width: 100%;
     display: flex;
@@ -23,5 +24,12 @@
         font: var(--paragraph-small);
         color: var(--content-secondary);
         margin-left: 1.75rem;
+    }
+}
+
+@media (width >= 1200px){
+    .question{
+        width: 24.125rem;
+        margin-top: 2.375rem;
     }
 }

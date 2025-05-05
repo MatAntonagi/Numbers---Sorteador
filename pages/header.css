@@ -1,6 +1,5 @@
 header{
-    display: flex;
-    flex-direction: column;
+    grid-area: A;
     gap: .5rem;
 
     margin-top: 2.875rem;
@@ -18,5 +17,17 @@ header{
         font: var(--display-medium);
         color: var(--content-primary);
         text-transform: uppercase;
+    }
+}
+
+@media (width >= 1200px){
+    header{
+        margin-top: 5.56rem;
+        width: 31.77rem;
+        height: min-content ;
+
+        & h1{
+            font: var(--display-large);
+        }
     }
 }

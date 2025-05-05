@@ -1,3 +1,7 @@
+.form-container{
+    grid-area: B;
+}
+
 form{
     margin-top: 2.62rem;
 
@@ -195,6 +199,19 @@ form{
     background-color: var(--background-secondary);
 }
 
+/* PARA TIRAR A SETINHA DE ADICIONAR E RETIRAR NUMEROS DO INPUT.
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number]{
+    /* Firefox */
+    -moz-appearance: textfield;
+}
+
 @keyframes borderAnimated {
     0% {
         background-position: 0% 50%;
@@ -216,5 +233,11 @@ form{
     }
     100% {
         transform: translateX(0); /* volta */
+    }
+}
+
+@media (width >=1200px){
+    .form-container{
+        width: 30rem;
     }
 }

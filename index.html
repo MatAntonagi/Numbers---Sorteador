@@ -13,19 +13,20 @@
     <main>
         <div class="logo"><img src="./assets/img/logo (1).png" alt="Logo"></div>
 
+        <div class="container">
         <header>
-        <h3>Online - gratuito</h3>
-        <h1>Sorteador <br>de números</h1>
+            <h3>Online - gratuito</h3>
+            <h1>Sorteador <br>de números</h1>
         </header>
 
-        <section>
-            <form>
-                <header>
+           <!-- <section class="form-container">
+                <form>
+                    <header>
                     <h2>Quero sortear:</h2>
                     <p>Defina o intervalo e a quantidade de números, clique em "Sortear" e veja os resultados na tela. É rápido e fácil!</p>
-                </header>
-
-                <div class="fields">
+                    </header>
+                
+                    <div class="fields">
                     <div class="number-1">
                         <div class="input-wrapper">
                             <input type="number" name="number" id="number">
@@ -44,24 +45,47 @@
                         </div>
                         <label for="to">até</label>
                     </div>
-                </div>
-
-                <div class="repeat-container">
+                    </div>
+                
+                    <div class="repeat-container">
                     <div class="input-wrapper">
                         <input type="checkbox" name="repeat" id="repeat">
                         <label for="repeat" class="btn-repeat"></label>
                     </div>
                     <label for="repeat" class="text-btn">Não repetir número</label>
+                    </div>
+                
+                    <button class="animated-button">
+                        Sortear 
+                        <img src="./assets/icons/arrow rigth.svg">
+                    </button>
+                </form>
+            </section>-->
+
+            <section class="result-container">
+                <div class="text-top">
+                    <h3>Resultado do sorteio</h3>
+                    <h4>1º resultado</h4>
+                </div>
+                <div class="content-number">
+                    <div class="retangle">
+                        <span class="number-result">23</span>
+                    </div>
+                    <div class="retangle">
+                        <span class="number-result">12</span>
+                    </div>
                 </div>
 
-                <button class="animated-button">
-                    Sortear 
-                    <img src="./assets/icons/arrow rigth.svg">
+                <button class="animated-button-restart">
+                    Sortear novamente
+                    <div class="img-rotate">
+                        <img src="./assets/icons/arrow-rotate.svg" class="spinner" alt="Seta Girando">
+                        <img src="./assets/icons/play.svg" class="fixed" alt="Play Fixo">
+                    </div>
                 </button>
-            </form>
-        </section>
+            </section>
 
-        <section class="question">
+            <section class="question">
             <div>
                 <div class="top">
                     <img src="./assets/icons/message.svg">
@@ -77,7 +101,8 @@
                 </div>
                 <p>Sim, você pode definir os valores mínimo e máximo para o intervalo dos números sorteados.</p>
             </div>
-        </section>
+            </section>
+        </div>  
     </main>
     
 

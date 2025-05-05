@@ -46,6 +46,7 @@
 
     /* Roboto Mono */
     --overline: 700 1rem/150% var(--ff-rm);
+    --number: 700 3rem/150% var(--ff-rm);
 
     /* Roboto Flex */
     --paragraph-large: 500 1rem/150% var(--ff-rf);
@@ -73,5 +74,14 @@ body{
 
     .logo{
         justify-content: left;
+    }
+
+    .container{
+        width: 100%;
+        display: grid;
+        grid-template-areas: 
+        "A B"
+        "C B";
+        column-gap: 4rem;
     }
 }
