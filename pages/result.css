@@ -18,8 +18,11 @@
     }
 
     & .content-number{
+        padding: 0 .5rem;
+        width: 100%;
         margin-top: 2.25rem;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         gap: .25rem;
         perspective: 800px;
@@ -39,16 +42,16 @@
             background-color: var(--content-brand);
             border-radius: 1.75rem;
             padding: 18px 22px;
-            animation: bgRotate 5s 1s ease-out forwards;
+            animation: bgRotate 3s 1s ease-out forwards;
             
             & .card-number{
-                animation: unrotate 5s 1s ease-out both;
+                animation: unrotate 3s 1s ease-out both;
 
                 & span{
                     font: var(--number);
                     color: var(--color-inverse);
                     animation: changeColor infinite ease both;
-                    animation-delay: 6s;
+                    animation-delay: 4s;
                     opacity: 1;
                 }
             }
@@ -172,15 +175,25 @@
 }
 
 @keyframes popZ {
-    to {
-      opacity: 1;
-      transform: translateZ(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
   }
+}
 
-  @keyframes changeColor {
-    to {
-        color: var(--content-brand);
-        opacity: 1;
-    }
+@keyframes changeColor {
+  to {
+      color: var(--content-brand);
+      opacity: 1;
   }
+}
+
+@media (width >= 1200px) {
+    .result-container{
+        width: 480px;
+    }
+
+    .content-number{
+        width: 419px;
+    }
+}
