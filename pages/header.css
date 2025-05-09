@@ -1,6 +1,7 @@
 header{
     grid-area: A;
     gap: .5rem;
+    max-height: min-content;
 
     margin-top: 2.875rem;
 

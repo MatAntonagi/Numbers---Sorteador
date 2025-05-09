@@ -1,4 +1,5 @@
 .question{
+    max-height: min-content;
     grid-area: C;
     margin-top: 5rem;
     width: 100%;

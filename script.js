@@ -1,119 +1,120 @@
-// Seleciona os elementos do formulário
-const form = document.querySelector("form")
-const quantityInput = document.getElementById("number")
-const minInput = document.getElementById("of")
-const maxInput = document.getElementById("to")
-const repeatCheckbox = document.getElementById("repeat")
-
-// Seleciona containers de exibição
+// Captura os elementos do formulario.
 const formContainer = document.querySelector(".form-container")
+const form = document.querySelector("form")
+const inputAmount = document.getElementById("number")
+const inputMinimum = document.getElementById("of")
+const inputMaximum = document.getElementById("to")
+const repeatBtn = document.getElementById("repeat")
+
+// Elementos da exibição de Resultado.
 const resultContainer = document.querySelector(".result-container")
-const resultList = document.querySelector(".content-number")
+const resultArea = document.querySelector(".content-number")
+const btnRestart = document.getElementById("btn-restart")
 
-// Botão de sortear novamente
-const restartButton = document.querySelector(".animated-button-restart")
-
-// Evento principal: Submissão do formulário
 form.onsubmit = (event) => {
-  event.preventDefault()
+    event.preventDefault() // Impede a pag de recarregar.
 
-  // Captura e valida os valores
-  const quantity = Number(quantityInput.value)
-  const min = Number(minInput.value)
-  const max = Number(maxInput.value)
-  const allowRepeat = !repeatCheckbox.checked
+    // Pega os valores dos inputs e converte para número.
+    const amount = Number(inputAmount.value)
+    const minimum = Number(inputMinimum.value)
+    const maximum = Number(inputMaximum.value)
+    const noRepeat = !repeatBtn.checked 
 
-  if (!validateInputs(quantity, min, max, allowRepeat)) return
-
-  // Gera os números sorteados
-  const numbers = generateRandomNumbers(quantity, min, max, allowRepeat)
-
-  // Atualiza interface
-  showResults(numbers)
-}
-
-// Validação dos valores inseridos
-function validateInputs(quantity, min, max, allowRepeat) {
-  if (min >= max) {
-    alert("O valor mínimo deve ser menor que o máximo.")
-    return false
-  }
-
-  if (quantity <= 0) {
-    alert("A quantidade de números deve ser maior que zero.")
-    return false
-  }
-
-  const range = max - min + 1
-
-  if (!allowRepeat && quantity > range) {
-    alert(`Não é possível sortear ${quantity} números únicos nesse intervalo.`)
-    return false
-  }
-
-  return true
-}
-
-// Gera números aleatórios com ou sem repetição
-function generateRandomNumbers(quantity, min, max, allowRepeat) {
-  const result = []
-  const usedNumbers = new Set()
-
-  while (result.length < quantity) {
-    const random = Math.floor(Math.random() * (max - min + 1)) + min
-
-    if (allowRepeat || !usedNumbers.has(random)) {
-      result.push(random)
-      usedNumbers.add(random)
+    // VALIDAÇÃO
+    // CASO DIGITE ALGO QUE NÃO SEJA NUMERO.
+    if (isNaN(amount) || isNaN(minimum) || isNaN(maximum)){
+        return alert("Preencha todos os campos com nùmeros validos!")
     }
-  }
 
-  return result
+    // CASO O MINIMO FOR MAIOR QUE O MAXIMO.
+    if (minimum > maximum) {
+        return alert('O valor "de" não pode ser maior que o "até".')
+    }
+
+    // Caso NÃO queira repetir e a quantidade for maior que o intervalo.
+    if (!noRepeat && amount > (maximum - minimum + 1)){
+        return alert("Quantidade excede o intervalo disponivel sem repetição.")
+    }
+
+    // Chama a funcão que faz o sorteio.
+    const results = startDraw(amount, minimum, maximum, noRepeat)
+    
+    // Exibe os resultados.
+    showResults(results)
 }
 
-// Exibe os resultados com animação
-function showResults(numbers) {
-  // Esconde formulário e mostra resultados
-  formContainer.style.display = "none"
-  resultContainer.style.display = "block"
-  resultList.innerHTML = ""
+// Função do sorteio.
+function startDraw(amount, minimum, maximum, noRepeat){
+    // Guarda números sorteados.
+    const results = []
 
-  // Cria os cards com intervalo entre animações
-  numbers.forEach((number, index) => {
-    setTimeout(() => {
-      const card = createCard(number)
-      resultList.appendChild(card)
-    }, index * 4500) // 6.5s de intervalo entre cada número
-  })
+    // while é um loop que so termina quando o rsultado for igual a quantidade.
+    while (results.length < amount) {
+        // Gera um número dentro do intervalo.
+        const random = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum
+        // Se não permitir repetição, gera um numero que ainda nao saiu.
+        if (noRepeat || !results.includes(random)){
+            results.push(random)
+        }
+    }
+    return results // Retorna os numeros sorteados.
 }
 
-// Cria o elemento visual do número sorteado
-function createCard(number) {
-  const cardWrapper = document.createElement("div")
-  cardWrapper.classList.add("card-wrapper")
+// Função para exibir o resultado.
+function showResults(results) {
+    // Desabilita o layout do form.
+    form.style.display = "none"    
+    // habilita o resultado.
+    resultContainer.style.display = "block"
 
-  const retangle = document.createElement("div")
-  retangle.classList.add("retangle")
+    resultArea.innerHTML = "" // ← limpa os resultados anteriores
 
-  const cardNumber = document.createElement("div")
-  cardNumber.classList.add("card-number")
-
-  const numberSpan = document.createElement("span")
-  numberSpan.classList.add("number-result")
-  numberSpan.textContent = number
-
-  cardNumber.appendChild(numberSpan)
-  retangle.appendChild(cardNumber)
-  cardWrapper.appendChild(retangle)
-
-  return cardWrapper
+    //Cria os cards com intervalo entre animações.
+    results.forEach((number, index) => {
+        setTimeout(() => {
+            const card = createCard(number)
+            resultArea.appendChild(card)
+        }, index * 2200); // Atraso de 2.2s entre cada numero.
+    })
 }
 
-// Botão "Sortear novamente"
-restartButton.onclick = () => {
-  resultContainer.style.display = "none"
-  formContainer.style.display = "block"
-  resultList.innerHTML = ""
-  form.reset()
-  quantityInput.focus()
+btnRestart.addEventListener("click", (event) => {
+    event.preventDefault()
+
+    // Esconde os Resultados.
+    resultContainer.style.display = "none"
+
+    // Mostra o Formulario Novamente.
+    form.style.display = "block"
+
+    // Limpa os campos do formulário
+    document.getElementById("number").value = ""
+    document.getElementById("of").value = ""
+    document.getElementById("to").value = ""
+    document.getElementById("repeat").checked = false
+
+    // Foca no primeiro campo
+    document.getElementById("number").focus()
+})
+
+function createCard(number){
+    const cardWrapper = document.createElement("div")
+    cardWrapper.classList.add("card-wrapper")
+
+    const retangle = document.createElement("div")
+    retangle.classList.add("retangle")
+
+    const cardNumber = document.createElement("div")
+    cardNumber.classList.add("card-number")
+
+    const span = document.createElement("span")
+    span.classList.add("number-result")
+    span.textContent = number
+
+    //Monta o card.
+    cardNumber.appendChild(span)
+    retangle.appendChild(cardNumber)
+    cardWrapper.appendChild(retangle)
+
+    return cardWrapper
 }
